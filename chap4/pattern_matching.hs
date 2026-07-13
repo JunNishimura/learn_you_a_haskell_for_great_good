@@ -110,3 +110,18 @@ cylinder r h =
     let sideArea = 2 * pi * r * h
         topArea = pi * r ^ 2
     in sideArea + 2 * topArea
+
+head'' :: [a] -> a
+head'' xs = case xs of [] -> error "no head for empty lists"
+                       (x:_) -> x
+
+describeList :: [a] -> String
+describeList xs = "the list is " ++ case xs of [] -> "empty"
+                                               [x] -> "a singleton list"
+                                               xs -> "a longer list"
+
+describeList' :: [a] -> String
+describeList' xs = "the list is " ++ what xs
+    where what [] = "emtpy"
+          what [x] = "a singleton list"
+          what xs = "a longer list"
