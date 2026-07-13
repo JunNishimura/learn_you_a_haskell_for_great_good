@@ -104,3 +104,9 @@ initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
 calcDensities :: (RealFloat a) => [(a, a)] -> [a]
 calcDensities xs = [density m v | (m, v) <- xs]
     where density mass volume = mass / volume
+
+cylinder :: (RealFloat a) => a -> a -> a
+cylinder r h = 
+    let sideArea = 2 * pi * r * h
+        topArea = pi * r ^ 2
+    in sideArea + 2 * topArea
