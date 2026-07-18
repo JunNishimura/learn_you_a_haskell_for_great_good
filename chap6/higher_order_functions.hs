@@ -51,3 +51,9 @@ chain n
 numLongChains :: Int
 numLongChains = length (filter isLong (map chain [1..100]))
     where isLong xs = length xs > 15
+
+numLonnChains' :: Int
+numLonnChains' = length (filter (\xs -> length xs > 15) (map chain [1..100]))
+
+flip'' :: (a -> b -> c) -> b -> a -> c
+flip'' f = \x y -> f y x
