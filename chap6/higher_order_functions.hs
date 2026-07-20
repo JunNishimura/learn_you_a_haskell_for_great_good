@@ -100,3 +100,13 @@ foldl''  f acc (x:xs) = foldl'' f (f acc x) xs
 foldr' :: (a -> b -> b) -> b -> [a] -> b
 foldr' f acc [] = acc
 foldr' f acc (x:xs) = f x (foldr' f acc xs)
+
+(.) :: (b -> c) -> (a -> b) -> a -> c
+f . g = \x -> f (g x)
+
+oddSquareSum :: Integer
+-- oddSquareSum = sum . takeWhile (<10000) . filter odd . map (^2) $ [1..]
+oddSquareSum =
+    let oddSquares = filter odd $ map (^2) [1..]
+        belowLimit = takeWhile (<10000) oddSquares
+    in sum belowLimit
