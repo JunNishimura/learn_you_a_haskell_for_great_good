@@ -2,6 +2,7 @@ import Data.List
 -- import Data.List hiding (nub)
 import qualified Data.Map as M
 import Data.Char
+import qualified Data.Set as S
 
 numUniques :: (Eq a) => [a] -> Int
 numUniques = length . nub
@@ -49,3 +50,8 @@ phoneBook2 =
 phoneBookToMap :: (Ord k) => [(k, a)] -> M.Map k [a]
 -- phoneBookToMap xs = M.fromListWith (\number1 number2 -> number1 ++ ", " ++ number2) xs
 phoneBookToMap xs = M.fromListWith (++) $ map (\(k,v) -> (k,[v])) xs
+
+text1 = "I just had an anime dream. Anime... Reality... Are they so different?"  
+text2 = "The old man left his garbage can out and now his trash is all over my lawn!" 
+
+setNub xs = S.toList $ S.fromList xs
