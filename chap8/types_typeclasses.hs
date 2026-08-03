@@ -28,14 +28,14 @@ nudge (Circle (Point x y) r) a b = Circle (Point (x + a) (y + b)) r
 nudge (Rectangle (Point x1 y1) (Point x2 y2)) a b = Rectangle (Point (x1 + a) (y1 + b)) (Point (x2 + a) (y2 + b))
 
 -- data Person = Person String String Int Float String String deriving (Show)
-data Person = Person {
-    firstName :: String,
-    lastName :: String,
-    age :: Int,
-    height :: Float,
-    phoneNumber :: String,
-    flavor :: String
-} deriving (Show)
+-- data Person = Person {
+--     firstName :: String,
+--     lastName :: String,
+--     age :: Int,
+--     height :: Float,
+--     phoneNumber :: String,
+--     flavor :: String
+-- } deriving (Show)
 
 -- data Car = Car String String Int deriving (Show)
 -- data Car = Car {
@@ -70,3 +70,12 @@ vectMult :: (Num t) => Vector t -> t -> Vector t
 
 scalarMult :: (Num t) => Vector t -> Vector t -> t
 (Vector i j k) `scalarMult` (Vector l m n) = i*l + j*m + k*n
+
+data Person = Person {
+    firstName :: String,
+    lastName :: String,
+    age :: Int
+} deriving (Eq, Show, Read)
+
+data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
+    deriving (Eq, Ord, Show, Read, Bounded, Enum)
