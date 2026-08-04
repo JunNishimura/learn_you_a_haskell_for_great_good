@@ -7,6 +7,9 @@ module Shapes (
     baseRect
 ) where
 
+import Prelude hiding (lookup)
+import qualified Data.Map as Map
+
 data Point = Point Float Float deriving (Show)
 -- data Shape = Circle Float Float Float | Rectangle Float Float Float Float deriving (Show)
 data Shape = Circle Point Float | Rectangle Point Point deriving (Show)
@@ -79,3 +82,47 @@ data Person = Person {
 
 data Day = Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday
     deriving (Eq, Ord, Show, Read, Bounded, Enum)
+
+type PhoneNumber = String
+type Name = String
+type PhoneBook = [(Name, PhoneNumber)]
+phoneBook :: PhoneBook
+phoneBook = 
+    [("amelia","555-2938")
+    ,("freya","452-2928")
+    ,("isabella","493-2928")
+    ,("neil","205-2928")
+    ,("roald","939-8282")
+    ,("tenzing","853-2492")
+    ]
+
+inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
+inPhoneBook name pnumber pbook = (name, pnumber) `elem` pbook
+
+type AssocList k v = [(k, v)]
+
+type IntMap v = Map.Map Int v
+type IntMap2 = Map.Map Int
+
+data Either2 a b = Left a | Right b deriving (Eq, Ord, Read, Show)
+
+data LockerState = Taken | Free deriving (Show, Eq)
+type Code = String
+type LockerMap = Map.Map Int (LockerState, Code)
+lockerLookup :: Int -> LockerMap -> Either String Code
+lockerLookup lockerNumber map =
+    case Map.lookup lockerNumber map of
+        Prelude.Nothing -> Prelude.Left $ "locker number " ++ show lockerNumber ++ " doesn't exist"
+        Prelude.Just (state, code) -> if state /= Taken
+                                then Prelude.Right code
+                                else Prelude.Left $ "locker " ++ show lockerNumber ++ " is already taken"
+
+lockers :: LockerMap  
+lockers = Map.fromList  
+    [(100,(Taken,"ZD39I"))  
+    ,(101,(Free,"JAH3I"))  
+    ,(103,(Free,"IQSA9"))  
+    ,(105,(Free,"QOTSA"))  
+    ,(109,(Taken,"893JJ"))  
+    ,(110,(Taken,"99292"))  
+    ]  
