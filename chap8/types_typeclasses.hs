@@ -160,3 +160,25 @@ treeElem x (Node a left right)
     | x == a = True
     | x < a = treeElem x left
     | x > a = treeElem x right
+
+data TrafficLight = Red | Yellow | Green
+
+instance Prelude.Eq TrafficLight where
+    Red == Red = True
+    Green == Green = True
+    Yellow == Yellow = True
+    _ == _ = False
+
+-- class Eq a where
+--     (==) :: a -> a -> Bool
+--     (/=) :: a -> a -> Bool
+
+instance Show TrafficLight where
+    show Red = "Red light"
+    show Yellow = "Yellow light"
+    show Green = "Green light"
+
+-- instance (Eq m) => Eq (Maybe m) where
+--     Just x == Just y = x == y
+--     Nothing == Nothing = True
+--     _ == _ = False
