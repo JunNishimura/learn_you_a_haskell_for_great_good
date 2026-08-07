@@ -1,11 +1,11 @@
-module Shapes (
-    Point(..),
-    Shape(..),
-    surface,
-    nudge,
-    baseCircle,
-    baseRect
-) where
+-- module Shapes (
+--     Point(..),
+--     Shape(..),
+--     surface,
+--     nudge,
+--     baseCircle,
+--     baseRect
+-- ) where
 
 import Prelude hiding (lookup)
 import qualified Data.Map as Map
@@ -211,3 +211,21 @@ instance YesNo TrafficLight where
 
 yesnoIf :: (YesNo y) => y -> a -> a -> a
 yesnoIf yesnoVal yesResult noResult = if yesno yesnoVal then yesResult else noResult
+
+class Functor f where
+    fmap :: (a -> b) -> f a -> f b
+
+instance Main.Functor [] where
+    fmap = map
+
+instance Main.Functor Main.Maybe where 
+    fmap f (Main.Just x) = Main.Just (f x)
+    fmap f Main.Nothing = Main.Nothing
+
+instance Main.Functor Tree where
+    fmap f EmptyTree = EmptyTree
+    fmap f (Node x leftsub rightsub) = Node (f x) (Main.fmap f leftsub) (Main.fmap f rightsub)
+
+-- instance Main.Functor (Either a) where
+--     fmap f (Main.Right x) = Main.Right (f x)
+--     fmap f (Main.Left x) = Main.Left x
