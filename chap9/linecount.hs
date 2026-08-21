@@ -1,0 +1,13 @@
+import System.Environment
+import System.IO
+import System.Directory
+
+main = do
+    (fileName:_) <- getArgs
+    fileExists <- doesFileExist fileName
+    if fileExists
+        then do
+            contents <- readFile fileName
+            putStrLn $ "the file has " ++ show (length (lines contents)) ++ " lines"
+        else do
+            putStrLn "the file does not exist"
